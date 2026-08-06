@@ -10,6 +10,7 @@ Contents:
 5) MMA_pressure_velocity_changes_pi_gwl_all_regions.py – Plots pressure and velocity changes across the different longitudinal regions between the GWL stabilization run and the pre-Industrial control runs
 6) Circulation_changes_pi_gwl_single_plot_multimodel.py – Calculates and plots the multi-model mean of the difference of the general circulation between the GWL stabilization run and the pre-Industrial control (global zonal mean of mass streamfunction, pressure velocity, and precipitation)
 7) Precipitation_evaluation.py – Evaluates precipitation in the historical runs in the models participating in TIPMIP
+8) Plotting_all_figures.py - Plots all figures using the reduced datasets found in https://doi.org/10.5281/zenodo.21818786
 
 Requirements:
 1. Python 3.x
