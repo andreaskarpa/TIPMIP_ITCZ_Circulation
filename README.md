@@ -12,6 +12,11 @@ Contents:
 7) Precipitation_evaluation.py – Evaluates precipitation in the historical runs in the models participating in TIPMIP
 8) Plotting_all_figures.py - Plots all figures using the reduced datasets found in https://doi.org/10.5281/zenodo.21818786
 
+9) Supplementary_Precipitation_changes_multimodel_mean.py - Plot supplementary figure (4C - 2C GWL) of the precipitation changes
+10) Supplementary_Circulation_changes_pi_gwl_single_plot_multimodel.py - Plots supplementary figure (4C - 2C) of the global zonal mean of mass streamfunction and pressure velocity
+11) Supplementary_MMA_pressure_velocity_changes_pi_gwl_all_regions.py - Plots supplementary figure (4C - 2C GWL) of the the local pressure velocity changes
+12) Supplementary_Plotting_figures.py - Plots all supplementary figures using the reduced datasets found in https://doi.org/10.5281/zenodo.21818786
+
 Requirements:
 1. Python 3.x
 2. Common scientific libraries (numpy, xarray, matplotlib, scipy, pandas, cartopy)
