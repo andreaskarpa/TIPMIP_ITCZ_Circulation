@@ -253,8 +253,8 @@ def plot2():
     labels = ['$2^o$C', '$4^o$C']
     
     fig, axs = plt.subplots(
-        4, len(regions.keys()), figsize=(18, 15),
-        constrained_layout=True, gridspec_kw={'height_ratios': [1, 1, 1 ,1]}
+        5, len(regions.keys()), figsize=(18, 19),
+        constrained_layout=True, gridspec_kw={'height_ratios': [1, 1, 1 ,1, 1]}
     )
     offset = 0.1 
     box_width = 0.1 
@@ -279,6 +279,9 @@ def plot2():
             
             latmin_list1 = list(df[(df['region']==region)&(df['season']==season_n)]['latmin_idealized1'])
             latmin_list2 = list(df[(df['region']==region)&(df['season']==season_n)]['latmin_idealized2'])
+            
+            width_list1 = list(df[(df['region']==region)&(df['season']==season_n)]['width_idealized1'])
+            width_list2 = list(df[(df['region']==region)&(df['season']==season_n)]['width_idealized2'])
             
             strength_list1 = list(df[(df['region']==region)&(df['season']==season_n)]['strength_idealized1'])
             strength_list2 = list(df[(df['region']==region)&(df['season']==season_n)]['strength_idealized2'])
@@ -318,17 +321,28 @@ def plot2():
                                     whiskerprops=dict(color=c),
                                     medianprops=dict(color=c))
     
-            axs[3, j].boxplot(strength_list1, positions=[pos[0]], widths=box_width, showfliers=False,
+            axs[3, j].boxplot(width_list1, positions=[pos[0]], widths=box_width, showfliers=False,
                                     boxprops=dict(color=c),
                                     capprops=dict(color=c),
                                     whiskerprops=dict(color=c),
                                     medianprops=dict(color=c), label=season_n)
-            axs[3, j].boxplot(strength_list2, positions=[pos[1]], widths=box_width, showfliers=False,
+            axs[3, j].boxplot(width_list2, positions=[pos[1]], widths=box_width, showfliers=False,
                                     boxprops=dict(color=c),
                                     capprops=dict(color=c),
                                     whiskerprops=dict(color=c),
                                     medianprops=dict(color=c))
-    
+
+            axs[4, j].boxplot(strength_list1, positions=[pos[0]], widths=box_width, showfliers=False,
+                                    boxprops=dict(color=c),
+                                    capprops=dict(color=c),
+                                    whiskerprops=dict(color=c),
+                                    medianprops=dict(color=c), label=season_n)
+            axs[4, j].boxplot(strength_list2, positions=[pos[1]], widths=box_width, showfliers=False,
+                                    boxprops=dict(color=c),
+                                    capprops=dict(color=c),
+                                    whiskerprops=dict(color=c),
+                                    medianprops=dict(color=c))
+
         
         if j==len(regions)-1:
             axs[0,j].legend()
@@ -359,18 +373,26 @@ def plot2():
         axs[2, j].yaxis.set_tick_params(labelsize=13)
     
         axs[3, j].set_xticks([1,2],labels, fontsize=18)
+        axs[3, j].set_xticklabels([])
         axs[3, j].set_xlim(0.7,2.3)
         axs[3, j].grid(visible=True, which='major',axis='y', color='grey', alpha = 0.5, linestyle='--')
         axs[3, j].xaxis.set_tick_params(which='both', labelbottom=True)
         axs[3, j].yaxis.set_tick_params(labelsize=13)
     
-        axs[3, j].set_xlabel(region, fontsize=20)
+        axs[4, j].set_xticks([1,2],labels, fontsize=18)
+        axs[4, j].set_xlim(0.7,2.3)
+        axs[4, j].grid(visible=True, which='major',axis='y', color='grey', alpha = 0.5, linestyle='--')
+        axs[4, j].xaxis.set_tick_params(which='both', labelbottom=True)
+        axs[4, j].yaxis.set_tick_params(labelsize=13)
+
+        axs[4, j].set_xlabel(region, fontsize=20)
     # Create final pandas DataFrame
     
     axs[0,0].set_ylabel('Northern edge \nlatitude difference (${}^o$)', fontsize=18)
     axs[1,0].set_ylabel('ITCZ location \nlatitude difference (${}^o$)', fontsize=18)
     axs[2,0].set_ylabel('Southern edge \nlatitude difference (${}^o$)', fontsize=18)
-    axs[3,0].set_ylabel('Strength difference \n(mm $d^{-1}$ ${}^o$)', fontsize=18)
+    axs[3,0].set_ylabel('Width \nlatitude difference (${}^o$)', fontsize=18)
+    axs[4,0].set_ylabel('Strength difference \n(mm $d^{-1}$ ${}^o$)', fontsize=18)
     plt.suptitle("", fontsize=20)
     plt.savefig(os.path.join(out_path,out_name))
 
@@ -1010,17 +1032,17 @@ def plot8():
                 lat_bounds_max = np.array([[phi_itcz_season_max - edgemin_max],
                                     [edgemax_max - phi_itcz_season_max]])
 
-                axs[k,i].errorbar(pos,center, yerr=lat_bounds, color = c, elinewidth=2,
+                axs[k,i].hlines(
+                                [edgemin_min, edgemax_max],
+                                xmin=pos - 10,
+                                xmax=pos + 10,
+                                color='black',
+                                linewidth=3,
+                                transform=ccrs.PlateCarree()
+                            )
+                bbplots = axs[k,i].errorbar(pos,center, yerr=lat_bounds, color = c, elinewidth=2,
                                         capsize=7, capthick =2, marker = 's', markersize=8, linestyle='',
                                         transform = ccrs.PlateCarree())
-                axs[k,i].hlines(
-                            [edgemin_min, edgemax_max],
-                            xmin=pos - 7,
-                            xmax=pos + 7,
-                            color=c,
-                            linewidth=3,
-                            transform=ccrs.PlateCarree()
-                        )
 
                 axs[k,i].set_ylim(-lat_limit,lat_limit)
             axs[k, 0].text(
