@@ -411,17 +411,17 @@ if __name__ == '__main__':
                 lat_bounds_max = np.array([[phi_itcz_season_max - edgemin_max],
                                     [edgemax_max - phi_itcz_season_max]])
 
+                axs[k,i].hlines(
+                                [edgemin_min, edgemax_max],
+                                xmin=pos - 10,
+                                xmax=pos + 10,
+                                color='black',
+                                linewidth=3,
+                                transform=ccrs.PlateCarree()
+                            )
                 bbplots = axs[k,i].errorbar(pos,center, yerr=lat_bounds, color = c, elinewidth=2,
                                         capsize=7, capthick =2, marker = 's', markersize=8, linestyle='',
                                         transform = ccrs.PlateCarree())
-                axs[k,i].hlines(
-                            [edgemin_min, edgemax_max],
-                            xmin=pos - 7,
-                            xmax=pos + 7,
-                            color=c,
-                            linewidth=3,
-                            transform=ccrs.PlateCarree()
-                        )
 
                 axs[k,i].set_ylim(-lat_limit,lat_limit)
             axs[k, 0].text(
