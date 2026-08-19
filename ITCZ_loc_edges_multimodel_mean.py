@@ -534,8 +534,8 @@ def multi_model(dict_pr_comp_all, dict_pr_idealized_all, season,
 def plot_changes(dict_pr_comp_all, dict_pr_idealized1_all, dict_pr_idealized2_all, regions, seasons, years_use_comp_all, 
                  years_use_idealized1_all, years_use_idealized2_all, labels, out_path, out_name):
     fig, axs = plt.subplots(
-        4, len(regions.keys()), figsize=(18, 15),
-        constrained_layout=True, gridspec_kw={'height_ratios': [1, 1, 1 ,1]}
+        5, len(regions.keys()), figsize=(18, 19),
+        constrained_layout=True, gridspec_kw={'height_ratios': [1, 1, 1 ,1, 1]}
     )
     offset = 0.1 
     box_width = 0.1 
@@ -552,8 +552,8 @@ def plot_changes(dict_pr_comp_all, dict_pr_idealized1_all, dict_pr_idealized2_al
                 pos = [1 + offset, 2 + offset]
             season = seasons[season_n]
 
-            loc_list1, latmax_list1, latmin_list1, strength_list1, snr_loc_list1, snr_latmax_list1, snr_latmin_list1, snr_strength_list1 = multi_model(dict_pr_comp_all, dict_pr_idealized1_all, season, years_use_comp_all, years_use_idealized1_all, lons_region)
-            loc_list2, latmax_list2, latmin_list2, strength_list2, snr_loc_list2, snr_latmax_list2, snr_latmin_list2, snr_strength_list2 = multi_model(dict_pr_comp_all, dict_pr_idealized2_all, season, years_use_comp_all, years_use_idealized2_all, lons_region)
+            loc_list1, latmax_list1, latmin_list1, strength_list1, width_list1, snr_loc_list1, snr_latmax_list1, snr_latmin_list1, snr_strength_list1 = multi_model(dict_pr_comp_all, dict_pr_idealized1_all, season, years_use_comp_all, years_use_idealized1_all, lons_region)
+            loc_list2, latmax_list2, latmin_list2, strength_list2, width_list2, snr_loc_list2, snr_latmax_list2, snr_latmin_list2, snr_strength_list2 = multi_model(dict_pr_comp_all, dict_pr_idealized2_all, season, years_use_comp_all, years_use_idealized2_all, lons_region)
 
             box_width = 0.1
             axs[0, j].boxplot(latmax_list1, positions=[pos[0]], widths=box_width, showfliers=False,
@@ -589,12 +589,23 @@ def plot_changes(dict_pr_comp_all, dict_pr_idealized1_all, dict_pr_idealized2_al
                                     whiskerprops=dict(color=c),
                                     medianprops=dict(color=c))
 
-            axs[3, j].boxplot(strength_list1, positions=[pos[0]], widths=box_width, showfliers=False,
+            axs[3, j].boxplot(width_list1, positions=[pos[0]], widths=box_width, showfliers=False,
                                     boxprops=dict(color=c),
                                     capprops=dict(color=c),
                                     whiskerprops=dict(color=c),
                                     medianprops=dict(color=c), label=season_n)
-            axs[3, j].boxplot(strength_list2, positions=[pos[1]], widths=box_width, showfliers=False,
+            axs[3, j].boxplot(width_list2, positions=[pos[1]], widths=box_width, showfliers=False,
+                                    boxprops=dict(color=c),
+                                    capprops=dict(color=c),
+                                    whiskerprops=dict(color=c),
+                                    medianprops=dict(color=c))
+
+            axs[4, j].boxplot(strength_list1, positions=[pos[0]], widths=box_width, showfliers=False,
+                                    boxprops=dict(color=c),
+                                    capprops=dict(color=c),
+                                    whiskerprops=dict(color=c),
+                                    medianprops=dict(color=c), label=season_n)
+            axs[4, j].boxplot(strength_list2, positions=[pos[1]], widths=box_width, showfliers=False,
                                     boxprops=dict(color=c),
                                     capprops=dict(color=c),
                                     whiskerprops=dict(color=c),
@@ -629,16 +640,24 @@ def plot_changes(dict_pr_comp_all, dict_pr_idealized1_all, dict_pr_idealized2_al
         axs[2, j].yaxis.set_tick_params(labelsize=13)
 
         axs[3, j].set_xticks([1,2],labels, fontsize=18)
+        axs[3, j].set_xticklabels([])
         axs[3, j].set_xlim(0.7,2.3)
         axs[3, j].grid(visible=True, which='major',axis='y', color='grey', alpha = 0.5, linestyle='--')
         axs[3, j].xaxis.set_tick_params(which='both', labelbottom=True)
         axs[3, j].yaxis.set_tick_params(labelsize=13)
 
-        axs[3, j].set_xlabel(region, fontsize=20)
+        axs[4, j].set_xticks([1,2],labels, fontsize=18)
+        axs[4, j].set_xlim(0.7,2.3)
+        axs[4, j].grid(visible=True, which='major',axis='y', color='grey', alpha = 0.5, linestyle='--')
+        axs[4, j].xaxis.set_tick_params(which='both', labelbottom=True)
+        axs[4, j].yaxis.set_tick_params(labelsize=13)
+
+        axs[4, j].set_xlabel(region, fontsize=20)
     axs[0,0].set_ylabel('Northern edge \nlatitude difference (${}^o$)', fontsize=18)
     axs[1,0].set_ylabel('ITCZ location \nlatitude difference (${}^o$)', fontsize=18)
     axs[2,0].set_ylabel('Southern edge \nlatitude difference (${}^o$)', fontsize=18)
-    axs[3,0].set_ylabel('Strength difference \n(mm $d^{-1}$ ${}^o$)', fontsize=18)
+    axs[3,0].set_ylabel('Width \nlatitude difference (${}^o$)', fontsize=18)
+    axs[4,0].set_ylabel('Strength difference \n(mm $d^{-1}$ ${}^o$)', fontsize=18)
     plt.suptitle("", fontsize=20)
     plt.savefig(os.path.join(out_path,out_name))
 
