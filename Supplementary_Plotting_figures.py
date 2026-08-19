@@ -168,7 +168,7 @@ def plot_s1():
     ############################################
     ###### Plot S1 (Precipitation changes) ######
     ############################################
-    file = os.path.join(input_path,'suuplementary_precipitation_changes_fig.nc')
+    file = os.path.join(input_path,'supplementary_precipitation_changes_fig.nc')
     out_name =  "Precipitation_changes_multi_model_mean.pdf"
     
     da = xr.open_dataset(file)
@@ -346,17 +346,17 @@ def plot_s3():
     ##############################################################
     ###### Plot S3 (Zonal Streamfunction changes)          ######
     ##############################################################
-    file4 = os.path.join(input_path,'zonal_psi_changes_fig_esm-up2p0-gwl4p0.nc')
+    file4 = os.path.join(input_path,'supplementary_zonal_psi_changes_fig_esm-up2p0-gwl4p0.nc')
     da4_psi = xr.open_dataset(file4)
     da4_psi = da4_psi['psi']
 
 
-    file4 = os.path.join(input_path,'zonal_pr_changes_fig_esm-up2p0-gwl4p0.nc')
+    file4 = os.path.join(input_path,'supplementary_zonal_pr_changes_fig_esm-up2p0-gwl4p0.nc')
     da4_pr = xr.open_dataset(file4)
     da4_pr = da4_pr['pr']
     
 
-    file4 = os.path.join(input_path,'zonal_wap_changes_fig_esm-up2p0-gwl4p0.nc')
+    file4 = os.path.join(input_path,'supplementary_zonal_wap_changes_fig_esm-up2p0-gwl4p0.nc')
     da4_wap = xr.open_dataset(file4)
     da4_wap = da4_wap['wap']
     
