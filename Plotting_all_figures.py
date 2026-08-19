@@ -1204,6 +1204,83 @@ def plot9():
         plt.suptitle("", fontsize=20)
         plt.savefig(os.path.join(out_path,name_out.format(season_n)))
     
+def plot10():
+    ##############################################################
+    ###### Plot of TIPMIP Models evaluation (historical and rampup          ######
+    ##############################################################
+    file_rampup = os.path.join(input_path,'historical_rampup_precipitation_differences_fig.nc')
+    file = os.path.join(input_path,'historical_precipitation_differences_fig.nc')
+    
+    da = xr.open_dataset(file)
+    da = da['pr']
+    
+    da_rampup = xr.open_dataset(file_rampup)
+    da_rampup = da_rampup['pr']
+    
+    naming_models = {'UKESM1-2' : 'UKESM1-2-LL', 'EC-Earth3' : 'EC-Earth3-ESM-1', 'IPSL' : 'IPSL-CM6-ESMCO2',
+              'CNRM' : 'CNRM-ESM2-2', 'GFDL-ESM2M': 'GFDL-ESM2M', 'MIROC-ES2L' : 'MIROC-ES2L', 'NorESM2-LM': 'NorESM2-LM'}
+    name_out =  "Precipitation_historical_rampup_evaluation_OptimESM.png"
+
+    
+    #### Precipitation differences evaluation #####
+    seasons_dict = {'DJF':[12,1,2], 'JJA':[6,7,8]}
+    fig, axs = plt.subplots(
+        7, 4, figsize=(19, 17), constrained_layout=True, 
+        subplot_kw=dict(projection=ccrs.PlateCarree())
+    )
+    for i, season_n in enumerate(seasons_dict.keys()):
+        print(season_n)
+        levels = np.arange(-5, 5.5, 0.5)
+        levels2 = np.arange(-3, 3.3, 0.3)
+        
+        axs[0,0 +i].set_title(season_n ,fontsize=15)
+        axs[0,2 + i].set_title(season_n ,fontsize=15)
+ 
+        model_name_list = list(da.model.values)
+        for j, model_name in enumerate(model_name_list):
+            ax = axs[j, 0 + i]
+            ax1 = axs[j, 2 + i]
+            difference = da.sel(model=model_name, season = season_n)
+            difference_idea = da_rampup.sel(model=model_name, season = season_n)
+            
+            c = ax.contourf(difference.lon.values, difference.lat.values, difference.values, levels=levels, cmap = 'BrBG',
+                        transform = ccrs.PlateCarree(), extend='both')
+            ax.coastlines()
+
+            c1 = ax1.contourf(difference_idea.lon.values, difference_idea.lat.values, difference_idea.values, levels=levels2, cmap = 'RdBu',
+                                    transform = ccrs.PlateCarree(), extend='both')
+            ax1.coastlines()  
+
+
+    for j, model_name in enumerate(model_name_list):
+        axs[j,0].text(-0.07, 0.5, naming_models[model_name],
+                        transform=axs[j,0].transAxes,
+                        rotation=90, va='center', ha='center', fontsize=14)
+
+
+    
+    #axs[0,2:4].set_title('Ramp up' ,fontsize=15)
+    cbar = fig.colorbar(
+        c,
+        ax=axs[:,0:2],
+        orientation='horizontal',
+        fraction=0.03,
+        pad=0.08
+    )
+    cbar.set_label('Precipitation difference (mm $d^{-1}$)', fontsize=18)
+    cbar.ax.tick_params(labelsize=14)
+
+    cbar1 = fig.colorbar(
+        c1,
+        ax=axs[:,2:4],
+        orientation='horizontal',
+        fraction=0.03,
+        pad=0.08
+    )
+    cbar1.set_label('Precipitation difference (mm $d^{-1}$)', fontsize=18)
+    cbar1.ax.tick_params(labelsize=14)
+    plt.suptitle('Historical                                                                      Ramp up' ,fontsize=25)
+    plt.savefig(os.path.join(out_path,name_out))    
     
 plot1()
 plot2()
@@ -1212,3 +1289,4 @@ plot56()
 plot7()
 plot8()
 plot9()
+plot10()
