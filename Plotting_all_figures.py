@@ -1267,7 +1267,7 @@ def plot10():
         fraction=0.03,
         pad=0.08
     )
-    cbar.set_label('Precipitation difference (mm $d^{-1}$)', fontsize=18)
+    cbar.set_label('Precipitation anomalies (historical - reanalysis) (mm $d^{-1}$)', fontsize=18)
     cbar.ax.tick_params(labelsize=14)
 
     cbar1 = fig.colorbar(
@@ -1277,10 +1277,10 @@ def plot10():
         fraction=0.03,
         pad=0.08
     )
-    cbar1.set_label('Precipitation difference (mm $d^{-1}$)', fontsize=18)
+    cbar1.set_label('Precipitation differences (ramp up - historical) (mm $d^{-1}$)', fontsize=18)
     cbar1.ax.tick_params(labelsize=14)
-    plt.suptitle('Historical                                                                      Ramp up' ,fontsize=25)
-    plt.savefig(os.path.join(out_path,name_out))    
+    plt.suptitle('Historical - Reanalysis                                                    Ramp up -  Historical' ,fontsize=25)
+    plt.savefig(os.path.join(out_path,name_out))
     
 plot1()
 plot2()
