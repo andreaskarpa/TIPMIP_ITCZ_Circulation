@@ -10,12 +10,13 @@ Contents:
 5) MMA_pressure_velocity_changes_pi_gwl_all_regions.py – Plots pressure and velocity changes across the different longitudinal regions between the GWL stabilization run and the pre-Industrial control runs
 6) Circulation_changes_pi_gwl_single_plot_multimodel.py – Calculates and plots the multi-model mean of the difference of the general circulation between the GWL stabilization run and the pre-Industrial control (global zonal mean of mass streamfunction, pressure velocity, and precipitation)
 7) Precipitation_evaluation.py – Evaluates precipitation in the historical runs in the models participating in TIPMIP
-8) Plotting_all_figures.py - Plots all figures using the reduced datasets found in https://doi.org/10.5281/zenodo.21818786
+8) Models_evaluation_with_ramp_up.py - Plots the precipitation anomalies for the historical runs of the models (1981-2005) against ERA5, and the differences of the first 10-50 years of the ramp-up against the same historical period, for the DJF and JJA seasons.
+9) Plotting_all_figures.py - Plots all figures using the reduced datasets found in https://doi.org/10.5281/zenodo.21818786
 
-9) Supplementary_Precipitation_changes_multimodel_mean.py - Plot supplementary figure (4C - 2C GWL) of the precipitation changes
-10) Supplementary_Circulation_changes_pi_gwl_single_plot_multimodel.py - Plots supplementary figure (4C - 2C) of the global zonal mean of mass streamfunction and pressure velocity
-11) Supplementary_MMA_pressure_velocity_changes_pi_gwl_all_regions.py - Plots supplementary figure (4C - 2C GWL) of the the local pressure velocity changes
-12) Supplementary_Plotting_figures.py - Plots all supplementary figures using the reduced datasets found in https://doi.org/10.5281/zenodo.21818786
+10) Supplementary_Precipitation_changes_multimodel_mean.py - Plot supplementary figure (4C - 2C GWL) of the precipitation changes
+11) Supplementary_Circulation_changes_pi_gwl_single_plot_multimodel.py - Plots supplementary figure (4C - 2C) of the global zonal mean of mass streamfunction and pressure velocity
+12) Supplementary_MMA_pressure_velocity_changes_pi_gwl_all_regions.py - Plots supplementary figure (4C - 2C GWL) of the the local pressure velocity changes
+13) Supplementary_Plotting_figures.py - Plots all supplementary figures using the reduced datasets found in https://doi.org/10.5281/zenodo.21818786
 
 Requirements:
 1. Python 3.x
