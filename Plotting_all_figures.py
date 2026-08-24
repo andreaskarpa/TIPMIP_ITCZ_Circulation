@@ -1233,8 +1233,8 @@ def plot10():
         levels = np.arange(-5, 5.5, 0.5)
         levels2 = np.arange(-3, 3.3, 0.3)
         
-        axs[0,0 +i].set_title(season_n ,fontsize=15)
-        axs[0,2 + i].set_title(season_n ,fontsize=15)
+        axs[0,0 +i].set_title(season_n ,fontsize=20)
+        axs[0,2 + i].set_title(season_n ,fontsize=20)
  
         model_name_list = list(da.model.values)
         for j, model_name in enumerate(model_name_list):
@@ -1247,7 +1247,7 @@ def plot10():
                         transform = ccrs.PlateCarree(), extend='both')
             ax.coastlines()
 
-            c1 = ax1.contourf(difference_idea.lon.values, difference_idea.lat.values, difference_idea.values, levels=levels2, cmap = 'RdBu',
+            c1 = ax1.contourf(difference_idea.lon.values, difference_idea.lat.values, difference_idea.values, levels=levels, cmap = 'RdBu',
                                     transform = ccrs.PlateCarree(), extend='both')
             ax1.coastlines()  
 
@@ -1257,6 +1257,30 @@ def plot10():
                         transform=axs[j,0].transAxes,
                         rotation=90, va='center', ha='center', fontsize=14)
 
+    axs[0,0].annotate(
+        '(a)',
+        xy=(0, 1.1), xycoords='axes fraction',
+        xytext=(+0.5, 0.5), textcoords='offset fontsize',
+        fontsize=20, verticalalignment='top', fontfamily='serif',
+        bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
+    axs[0,1].annotate(
+        '(b)',
+        xy=(0, 1.1), xycoords='axes fraction',
+        xytext=(+0.5, 0.5), textcoords='offset fontsize',
+        fontsize=20, verticalalignment='top', fontfamily='serif',
+        bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
+    axs[0,2].annotate(
+        '(c)',
+        xy=(0, 1.1), xycoords='axes fraction',
+        xytext=(+0.5, 0.5), textcoords='offset fontsize',
+        fontsize=20, verticalalignment='top', fontfamily='serif',
+        bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
+    axs[0,3].annotate(
+        '(d)',
+        xy=(0, 1.1), xycoords='axes fraction',
+        xytext=(+0.5, 0.5), textcoords='offset fontsize',
+        fontsize=20, verticalalignment='top', fontfamily='serif',
+        bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
 
     
     #axs[0,2:4].set_title('Ramp up' ,fontsize=15)
