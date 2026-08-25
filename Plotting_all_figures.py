@@ -423,8 +423,8 @@ def plot34():
     for da, run_gwl in zip([da2,da4], ['gwl2p0', 'gwl4p0']):
         name_of_plot = 'MMA_omega_change_regions_pi_{}'.format(run_gwl)
     
-        fig, axes = plt.subplots(7,3, figsize=(25,30),
-                                        gridspec_kw={'width_ratios': [15,15,3]},  # Ensure equal heights
+        fig, axes = plt.subplots(7,3, figsize=(30,30),
+                                        gridspec_kw={'width_ratios': [15,15,2]},  # Ensure equal heights
                                         )
         for k, area in enumerate(list(regions.keys())): 
             ax11, ax12, ax_empty = axes[k]  
@@ -483,8 +483,8 @@ def plot34():
                 ax_empty.set_axis_off()
     
         fig.subplots_adjust(right=0.9)
-        ax_cb11 = fig.add_axes([0.92, 0.55, 0.015, 0.45])
-        ax_cb12 = fig.add_axes([0.92, 0.10, 0.015, 0.45])
+        ax_cb11 = fig.add_axes([0.92, 0.55, 0.015, 0.4])
+        ax_cb12 = fig.add_axes([0.92, 0.05, 0.015, 0.4])
         cbar11 = plt.colorbar(c12,ax=ax_cb11,fraction=1.5)
         cbar11.ax.tick_params(labelsize=20)
         cbar11.set_label('Pressure Velocity Difference (Pa $s^{-1}$)',fontsize=25)
