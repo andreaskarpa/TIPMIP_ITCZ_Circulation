@@ -179,7 +179,7 @@ def plot1():
     da = da['pr']
     #print(da)
     seasons = {'DJF':[12,1,2], 'JJA':[6,7,8]}
-    labels = ['$2^oC$ GWL', '$4^oC$ GWL']
+    labels = ['$2\ {}^oC$ GWL', '$4\ {}^oC$ GWL']
     fig, axs = plt.subplots(
         2, len(seasons.keys()), figsize=(17, 9), constrained_layout=True, 
         subplot_kw=dict(projection=ccrs.Mollweide())
@@ -250,7 +250,7 @@ def plot2():
                     'Eastern Pacific':[230,270], 'World':[0,360]}
     seasons = {'DJF':[12,1,2], 'JJA':[6,7,8]}
     out_name =  "ITCZ_loc_edges_multi_model_mean_boxplots.pdf"
-    labels = ['$2^o$C', '$4^o$C']
+    labels = ['$2\ {}^oC$', '$4\ {}^oC$']
     
     fig, axs = plt.subplots(
         5, len(regions.keys()), figsize=(18, 19),
@@ -750,7 +750,7 @@ def plot56():
 
 def plot7():
     ##############################################################
-    ###### Plot 7 (Vertical Moisture Fluxes changes)        ######
+    ###### Plot 7 (Vertical Moisture Transport changes)     ######
     ##############################################################
     file = os.path.join(input_path,'moisture_fluxes_changes_fig.nc')
     name_of_plot = 'Moisture_mass_flux_change_multimodel_picontrol_gwl2p0_gwl4p0'
@@ -759,7 +759,7 @@ def plot7():
     da = da['waphus']
     
     seasons = {'DJF':[12,1,2], 'JJA':[6,7,8]}
-    labels = ['$2^oC$ GWL', '$4^oC$ GWL']
+    labels = ['$2\ {}^oC$ GWL', '$4\ {}^oC$ GWL']
     g = 9.81  # gravity in m/s^2
     bottom_level = 1000
     top_level = 100
@@ -829,13 +829,12 @@ def plot7():
         
         if season_n == 'JFM' or season_n == 'DJF':
             ax1.set_ylabel('{}\nPressure (hPa)'.format(labels[0]), fontsize=25)
-        else:
-            ax1.set_ylabel('Pressure (hPa)', fontsize=25)
+
         #ax1.set_xlabel('Latitude', fontsize=15)
         ax1.tick_params(axis='x', which='major', labelsize=20)
         ax1.tick_params(axis='y', which='major', labelsize=20)
 
-        ax1.set_title('{}\n Vertical Moisture Flux'.format(season_n), fontsize=25)
+        ax1.set_title('{}'.format(season_n), fontsize=25)
 
         #####################
         #####################
@@ -877,8 +876,7 @@ def plot7():
         
         if season_n == 'JFM' or season_n == 'DJF':
             ax2.set_ylabel('{}\nPressure (hPa)'.format(labels[1]), fontsize=25)
-        else:
-            ax2.set_ylabel('Pressure (hPa)', fontsize=25)
+
         #ax2.set_xlabel('Latitude', fontsize=15)
         ax2.tick_params(axis='x', which='major', labelsize=20)
         ax2.tick_params(axis='y', which='major', labelsize=20)
@@ -889,11 +887,11 @@ def plot7():
 
     fig.subplots_adjust(right=0.9)
     ax_cb11 = fig.add_axes([0.92, 0.55, 0.015, 0.4])
-    ax_cb12 = fig.add_axes([0.92, 0.10, 0.015, 0.4])
+    ax_cb12 = fig.add_axes([0.92, 0.05, 0.015, 0.4])
 
     cbar11 = plt.colorbar(c11,ax=ax_cb11,fraction=0.8)
     cbar11.ax.tick_params(labelsize=15)
-    cbar11.set_label('Moisture Mass Flux Difference ($10^{-5}$ kg $m^{-2}s^{-1}$)',fontsize=20)
+    cbar11.set_label('Moisture Transport Difference ($10^{-5}$ kg $m^{-2}s^{-1}$)',fontsize=20)
     cbar11.ax.yaxis.get_offset_text().set_visible(False)
 
     sm_ps, tick_locs_ps, tick_labels_ps = colorbar_contour(levels_wh, 'bwr_r', -6e-5, 6e-5, 1/1e-5)
@@ -901,7 +899,7 @@ def plot7():
     cbar22 = plt.colorbar(sm_ps, ticks=tick_locs_ps, ax=ax_cb12, fraction=0.8)
     cbar22.ax.set_yticklabels(tick_labels_ps)
     cbar22.ax.tick_params(labelsize=15)
-    cbar22.set_label('Moisture Mass Flux ($10^{-5}$ kg $m^{-2}s^{-1}$)',fontsize=20)
+    cbar22.set_label('Moisture Transport ($10^{-5}$ kg $m^{-2}s^{-1}$)',fontsize=20)
     cbar22.ax.yaxis.get_offset_text().set_visible(False)
 
     
@@ -909,25 +907,25 @@ def plot7():
         '(a)',
         xy=(0, 1.1), xycoords='axes fraction',
         xytext=(+0.5, -0.5), textcoords='offset fontsize',
-        fontsize=20, verticalalignment='top', fontfamily='serif',
+        fontsize=25, verticalalignment='top', fontfamily='serif',
         bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
     ax12.annotate(
         '(b)',
         xy=(0, 1.1), xycoords='axes fraction',
         xytext=(+0.5, -0.5), textcoords='offset fontsize',
-        fontsize=20, verticalalignment='top', fontfamily='serif',
+        fontsize=25, verticalalignment='top', fontfamily='serif',
         bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
     ax21.annotate(
         '(c)',
         xy=(0, 1.1), xycoords='axes fraction',
         xytext=(+0.5, -0.5), textcoords='offset fontsize',
-        fontsize=20, verticalalignment='top', fontfamily='serif',
+        fontsize=25, verticalalignment='top', fontfamily='serif',
         bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
     ax22.annotate(
         '(d)',
         xy=(0, 1.1), xycoords='axes fraction',
         xytext=(+0.5, -0.5), textcoords='offset fontsize',
-        fontsize=20, verticalalignment='top', fontfamily='serif',
+        fontsize=25, verticalalignment='top', fontfamily='serif',
         bbox=dict(facecolor='1.0', edgecolor='none', pad=3.0))
 
     
