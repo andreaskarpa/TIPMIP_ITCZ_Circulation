@@ -13,5 +13,5 @@ Contents:
   11. TIPMIP_models_evaluation.py - - Plots the precipitation anomalies for the historical runs of the models (1981-2005) against ERA5, and the differences of the first 10-50 years of the ramp-up against the same historical period, for the DJF and JJA seasons.
 
 Requirements:
-  Python 3.x
-  Common scientific libraries (numpy, xarray, matplotlib, scipy, pandas, cartopy)
+  1. Python 3.x
+  2. Common scientific libraries (numpy, xarray, matplotlib, scipy, pandas, cartopy)
